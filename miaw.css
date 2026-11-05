@@ -1,7 +1,15 @@
-
 @charset "UTF-8";
 
-/* Configuración general */
+:root {
+    --fondo-oscuro: #071a2b;
+    --azul: #0b3b5b;
+    --celeste: #38bdf8;
+    --celeste-claro: #bae6fd;
+    --texto: #eaf6ff;
+    --panel: rgba(12, 43, 66, 0.88);
+    --borde: rgba(56, 189, 248, 0.35);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -13,74 +21,63 @@ html {
 body {
     min-height: 100vh;
     margin: 0;
-    padding: 30px 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #2c0820;
-
-    cursor: url("cursor-morado.png"), auto;
-
-    background: linear-gradient(
-        -45deg,
-        #910289,
-        #02973b,
-        #D7C4CB,
-        #65a104
-    );
-
-    background-size: 400% 400%;
-    animation: fondo 15s ease infinite;
-
+    padding: 0 15px 30px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--texto);
+
+    background: linear-gradient(
+        -45deg,
+        #061522,
+        #0b3b5b,
+        #075985,
+        #082f49
+    );
+
+    background-size: 400% 400%;
+    animation: fondo 18s ease infinite;
 }
 
-/* Título principal */
-h1 {
+/* Títulos (H1 y H2 comparten el diseño de tarjeta) */
+h1, h2 {
     width: 100%;
     max-width: 1100px;
-    margin: 10px auto 30px;
-    padding: 25px;
-
-    border-radius: 20px;
+    margin: 0 auto;
+    padding: 24px;
+    border: 1px solid var(--borde);
+    border-radius: 18px;
     text-align: center;
-    font-size: clamp(30px, 5vw, 42px);
-    color: #2c0820;
-
-    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
-
-    background: rgba(255, 255, 255, 0.25);
+    font-size: clamp(24px, 4.5vw, 38px);
+    color: var(--celeste-claro);
+    background: rgba(3, 20, 35, 0.78);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(8px);
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-
-    animation: aparecerArriba 1s ease-out;
-
+    animation: aparecerArriba 0.8s ease-out;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-h1:hover {
-    color: #6B3FA0;
-    transform: scale(1.02);
+h1:hover, h2:hover {
+    color: #ffffff;
+    transform: translateY(-3px);
 }
 
-/* Texto principal */
+/* Párrafos */
 p {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 25px;
-
-    border-radius: 18px;
-
-    background: rgba(255, 255, 255, 0.45);
-
+    padding: 24px;
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    color: var(--texto);
+    background: var(--panel);
     line-height: 1.8;
     font-size: 17px;
-
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-
-    animation: aparecer 1.2s ease-out;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+    animation: aparecer 1s ease-out;
 
     transition:
         transform 0.3s ease,
@@ -88,80 +85,127 @@ p {
         box-shadow 0.3s ease;
 }
 
-/* Efecto al pasar el cursor por el texto */
 p:hover {
-    transform: translateY(-5px);
-
-    background: rgba(255, 255, 255, 0.65);
-
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    background: rgba(14, 55, 82, 0.96);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
 }
 
-/* Adaptación a celulares */
+/* Sección de Redes / Plataformas */
+.redes-sociales {
+    width: 100%;
+    max-width: 1100px;
+    margin: 18px auto 10px;
+    padding: 24px;
+    text-align: center;
+    border: 1px solid var(--borde);
+    border-radius: 18px;
+    background: var(--panel);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22);
+}
+
+/* Título interno de la sección de redes */
+.redes-sociales h2 {
+    width: auto;
+    max-width: none;
+    margin: 0 0 20px 0;
+    padding: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    animation: none;
+    font-size: clamp(22px, 4vw, 30px);
+    color: var(--celeste-claro);
+}
+
+.lista-redes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.enlace-plataforma {
+    display: inline-block;
+    min-width: 130px;
+    padding: 13px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.enlace-plataforma:hover {
+    transform: translateY(-4px);
+    filter: brightness(1.15);
+}
+
+/* Colores personalizados por red social */
+.youtube { background: #c62828; }
+.twitch { background: #6441a5; }
+.kick { background: #238636; }
+.discord { background: #5865F2; }
+.x { background: #000000; border: 1px solid #444; }
+.tiktok { background: #fe2c55; }
+
+/* Celulares */
 @media (max-width: 600px) {
     body {
-        padding: 15px 10px;
+        padding: 0 10px 15px 10px;
+        gap: 13px;
     }
 
-    h1 {
-        padding: 20px 15px;
-        margin-bottom: 20px;
-        border-radius: 16px;
+    h1, h2 {
+        padding: 19px 14px;
+        border-radius: 14px;
     }
 
     p {
         padding: 18px;
         font-size: 15px;
-        line-height: 1.6;
+        line-height: 1.65;
+    }
+
+    .redes-sociales {
+        padding: 18px;
+    }
+
+    .lista-redes {
+        flex-direction: column;
+    }
+
+    .enlace-plataforma {
+        width: 100%;
     }
 }
 
 /* Fondo animado */
 @keyframes fondo {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-/* Animación del título */
+/* Animaciones */
 @keyframes aparecerArriba {
-    from {
-        opacity: 0;
-        transform: translateY(-40px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Animación del texto */
 @keyframes aparecer {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-/* Reducir animaciones si está configurado en el dispositivo */
+/* Reducir animaciones */
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
