@@ -1,3 +1,4 @@
+
 const paginas = [
     {
         nombre: "YouTube de yMiau",
@@ -25,7 +26,7 @@ const paginas = [
         clase: "kick"
     },
     {
-        nombre: "Tiktok de Ymiau",
+        nombre: "TikTok de Ymiau",
         url: "https://www.tiktok.com/@ymiaau",
         clase: "tiktok"
     }
@@ -41,7 +42,7 @@ titulo.textContent = "Redes donde Ymiau sube videos o hace directos";
 const lista = document.createElement("div");
 lista.className = "lista-redes";
 
-// Crear enlaces dinámicamente
+// Crear enlaces
 paginas.forEach((pagina) => {
     const enlace = document.createElement("a");
 
@@ -57,4 +58,84 @@ paginas.forEach((pagina) => {
 seccion.appendChild(titulo);
 seccion.appendChild(lista);
 
-document.body.appendChild(seccion);
+document.querySelector("main").appendChild(seccion);
+
+
+// ===================================
+// CURSOR PERSONALIZADO DE MINECRAFT
+// ===================================
+
+// Espada pixelada
+const espadaSVG = `
+<svg xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 16 16"
+shape-rendering="crispEdges">
+
+    <path fill="#202020"
+    d="M10 0h3v3h-2v2H9V3h1z
+    M8 5h2v2H8z
+    M6 7h2v2H6z
+    M4 9h2v2H4z
+    M2 11h2v2H2z
+    M1 13h3v2H1z"/>
+
+    <path fill="#d9f4ff"
+    d="M11 1h1v2h-1z
+    M9 4h2v2H9z
+    M7 6h2v2H7z
+    M5 8h2v2H5z
+    M3 10h2v2H3z"/>
+
+    <path fill="#8b5a2b"
+    d="M4 11h2v2H4z
+    M3 12h2v2H3z
+    M2 13h2v2H2z"/>
+</svg>
+`;
+
+const espada = "data:image/svg+xml;charset=utf-8," +
+    encodeURIComponent(espadaSVG);
+
+// Cabeza de la skin de yMiau
+const cabezaYmiau = "https://mc-heads.net/avatar/yMiau/64";
+
+// Crear cursor
+const cursor = document.createElement("img");
+
+cursor.className = "cursor-minecraft";
+cursor.src = espada;
+cursor.alt = "";
+
+document.body.appendChild(cursor);
+
+// Detectar dispositivos con mouse
+const tieneMouse = window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+).matches;
+
+if (tieneMouse) {
+
+    document.body.classList.add("cursor-personalizado");
+
+    // Mover cursor
+    window.addEventListener("pointermove", (evento) => {
+        cursor.style.left = evento.clientX + "px";
+        cursor.style.top = evento.clientY + "px";
+    });
+
+    // Al presionar: aparece la cabeza de yMiau
+    window.addEventListener("pointerdown", () => {
+        cursor.src = cabezaYmiau;
+        cursor.classList.add("cursor-cabeza");
+    });
+
+    // Al soltar: vuelve la espada
+    function restaurarEspada() {
+        cursor.src = espada;
+        cursor.classList.remove("cursor-cabeza");
+    }
+
+    window.addEventListener("pointerup", restaurarEspada);
+    window.addEventListener("pointercancel", restaurarEspada);
+    window.addEventListener("blur", restaurarEspada);
+}
